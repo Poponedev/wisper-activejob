@@ -9,7 +9,7 @@ module Wisper
     end
 
     class Wrapper < ::ActiveJob::Base
-      queue_as :default
+      queue_as "fitts-#{ENV['FITTS_PHASE'] && ENV['FITTS_PHASE'].downcase}-queue"
 
       def perform(class_name, event, args)
         listener = class_name.constantize
